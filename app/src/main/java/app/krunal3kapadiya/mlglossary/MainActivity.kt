@@ -11,9 +11,13 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 
 class MainActivity : AppCompatActivity() {
+    @Inject
+    lateinit var context: Context
+
     val TAG = MainActivity::class.java.simpleName
     var definitionList: ArrayList<Mldefinitions> = ArrayList()
 
