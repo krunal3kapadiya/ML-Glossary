@@ -1,23 +1,18 @@
-package app.krunal3kapadiya.mlglossary
+package app.krunal3kapadiya.mlglossary.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
-import javax.inject.Inject
+import app.krunal3kapadiya.mlglossary.R
+import app.krunal3kapadiya.mlglossary.ui.listing.MainActivity
 
 class SplashActivity : AppCompatActivity() {
-
-    @Inject
-    lateinit var context: Context
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        MLApplication.appComponent.inject(this)
         Handler().postDelayed({
-            MainActivity.launch(context)
+            MainActivity.launch(this)
             finish()
         }, 3000)
     }

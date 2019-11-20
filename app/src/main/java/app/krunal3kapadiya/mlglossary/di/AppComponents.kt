@@ -1,9 +1,9 @@
 package app.krunal3kapadiya.mlglossary.di
 
 import app.krunal3kapadiya.mlglossary.MLApplication
-import app.krunal3kapadiya.mlglossary.MLDefinitionsAdapter
-import app.krunal3kapadiya.mlglossary.MainActivity
-import app.krunal3kapadiya.mlglossary.SplashActivity
+import app.krunal3kapadiya.mlglossary.ui.listing.MLDefinitionsAdapter
+import app.krunal3kapadiya.mlglossary.ui.listing.MainActivity
+import app.krunal3kapadiya.mlglossary.ui.SplashActivity
 import dagger.Component
 import javax.inject.Singleton
 
