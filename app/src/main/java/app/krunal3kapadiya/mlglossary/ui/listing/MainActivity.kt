@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
-import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import app.krunal3kapadiya.mlglossary.R
+import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity() {
             MLDefinitionsAdapter(
                 definitionList
             )
+
         rv_definitions.layoutManager = LinearLayoutManager(this@MainActivity)
         rv_definitions.adapter = adapter
-
 
         if (isNetworkConnected()) {
             // Read from the database

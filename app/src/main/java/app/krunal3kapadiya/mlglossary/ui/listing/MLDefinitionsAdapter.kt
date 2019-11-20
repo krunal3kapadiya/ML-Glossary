@@ -1,18 +1,16 @@
 package app.krunal3kapadiya.mlglossary.ui.listing
 
-import android.content.Intent
 import android.speech.tts.TextToSpeech
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import app.krunal3kapadiya.mlglossary.MLApplication
 import app.krunal3kapadiya.mlglossary.R
 import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
 import kotlinx.android.synthetic.main.row_vocab_list.view.*
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * displaying words list in main screen
