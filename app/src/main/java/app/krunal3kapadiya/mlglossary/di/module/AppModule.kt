@@ -11,26 +11,37 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 
-@Module
-class AppModule(var application: Application) {
 
+@Module(includes = [ViewModelModule::class])
+object AppModule {
+    @JvmStatic
     @Provides
     @Singleton
-    fun providesApplicationContext(): Context {
+    fun provideContext(application: Application): Context {
         return application
     }
-
-    @Provides
-    @Singleton
-    fun provideAppDatabase(@DatabaseInfo dbName: String?, context: Context?): AppDatabase? {
-        return Room.databaseBuilder(context!!, AppDatabase::class.java, dbName!!)
-            .fallbackToDestructiveMigration()
-            .build()
-    }
-
-    @Provides
-    @PreferenceInfo
-    fun providePreferenceName(): String? {
-        return AppConstants.PREF_NAME
-    }
 }
+
+//@Module
+//class AppModule(var application: Application) {
+//
+//    @Provides
+//    @Singleton
+//    fun providesApplicationContext(): Context {
+//        return application
+//    }
+//
+//    @Provides
+//    @Singleton
+//    fun provideAppDatabase(@DatabaseInfo dbName: String?, context: Context?): AppDatabase? {
+//        return Room.databaseBuilder(context!!, AppDatabase::class.java, dbName!!)
+//            .fallbackToDestructiveMigration()
+//            .build()
+//    }
+//
+//    @Provides
+//    @PreferenceInfo
+//    fun providePreferenceName(): String? {
+//        return AppConstants.PREF_NAME
+//    }
+//}

@@ -1,9 +1,6 @@
 package app.krunal3kapadiya.mlglossary.data.local.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
 import io.reactivex.Single
 
@@ -15,6 +12,9 @@ interface DefinitionDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(options: List<Mldefinitions?>?)
 
-    @Query("SELECT * FROM ")
+    @Query("SELECT * FROM definitions")
     fun loadAll(): Single<List<Mldefinitions?>?>?
+
+    @Delete
+    fun delete(mldefinitions: Mldefinitions)
 }

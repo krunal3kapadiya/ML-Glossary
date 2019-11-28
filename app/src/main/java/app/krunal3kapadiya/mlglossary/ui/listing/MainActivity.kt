@@ -6,8 +6,11 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.krunal3kapadiya.mlglossary.R
+import app.krunal3kapadiya.mlglossary.ViewModelFactory
 import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -20,6 +23,9 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var context: Context
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
 
     val TAG = MainActivity::class.java.simpleName
     var definitionList: ArrayList<Mldefinitions> = ArrayList()
@@ -48,6 +54,8 @@ class MainActivity : AppCompatActivity() {
 
         rv_definitions.layoutManager = LinearLayoutManager(this@MainActivity)
         rv_definitions.adapter = adapter
+        val listingViewModel =
+            ViewModelProviders.of(this, viewModelFactory).get(ListingViewModel::class.java)
 
         if (isNetworkConnected()) {
             // Read from the database
@@ -61,6 +69,9 @@ class MainActivity : AppCompatActivity() {
                         temp?.let { definitionList.add(it) }
                         vf_main.displayedChild = 0 // displaying list
                     }
+
+                    listingViewModel.insertAll(definitionList)
+
                     adapter.notifyDataSetChanged()
                 }
 
