@@ -3,12 +3,15 @@ package app.krunal3kapadiya.mlglossary.ui.listing
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.krunal3kapadiya.mlglossary.Injection
 import app.krunal3kapadiya.mlglossary.R
 import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
+import app.krunal3kapadiya.mlglossary.ui.AboutActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -76,6 +79,19 @@ class MainActivity : BaseActivity() {
                 listingViewModel.fetchDataFromDatabase()
             }
         }
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_about -> {
+                AboutActivity.launch(this@MainActivity)
+            }
+        }
+        return true
     }
 }

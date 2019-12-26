@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">ML Glossary</string>
     <string name="version">VERSION: </string>
+    <string name="about">About</string>
+    <string name="website_link">Website: https://krunal3kapadiya.app</string>
+    <string name="rating_text">Give rating… Oh yes ✅</string>
+    <string name="query_text">For any query drop an email to krunal3kapadiya@gmail.com</string>
+    <string name="text_developer_name">Developed by Krunal Kapadiya</string>
+    <string name="love_text">Proudly made in Kotlin with ❤️ from 🇮🇳 </string>
+    <string name="github_link"><![CDATA[Find application code on <a href="https://github.com/krunal3kapadiya/ML-Glossary">Github</a>]]></string>
 </resources>

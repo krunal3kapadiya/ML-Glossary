@@ -29,7 +29,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.SettingsActivity" />
-    </application>
+        <activity
+            android:name=".ui.AboutActivity"
+            android:label="@string/about"
+            android:parentActivityName=".ui.listing.MainActivity" />
 
+    </application>
 </manifest>
