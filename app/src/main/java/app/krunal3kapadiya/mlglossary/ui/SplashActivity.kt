@@ -16,7 +16,7 @@ class SplashActivity : AppCompatActivity() {
         Handler().postDelayed({
             MainActivity.launch(this)
             finish()
-        }, 3000)
+        }, 1000)
 
         txt_version.text = getString(R.string.version).plus(BuildConfig.VERSION_NAME)
     }
