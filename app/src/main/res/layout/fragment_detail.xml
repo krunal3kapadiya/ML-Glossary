@@ -5,14 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".ui.detail.DetailFragment">
+    tools:context=".ui.detail.DetailDialogFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:id="@+id/text_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="16dp"
+        android:layout_margin="16dp"
         android:gravity="start"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         app:layout_constraintEnd_toEndOf="parent"
@@ -26,11 +25,11 @@
         android:layout_height="1dp"
         android:layout_margin="16dp"
         android:background="@color/colorAccent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/detail"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
