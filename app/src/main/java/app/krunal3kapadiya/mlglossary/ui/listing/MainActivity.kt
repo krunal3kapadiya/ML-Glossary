@@ -12,9 +12,10 @@ import app.krunal3kapadiya.mlglossary.Injection
 import app.krunal3kapadiya.mlglossary.R
 import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
 import app.krunal3kapadiya.mlglossary.ui.AboutActivity
+import app.krunal3kapadiya.mlglossary.ui.detail.DetailFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), OnClickListener {
 
     var definitionList: ArrayList<Mldefinitions> = ArrayList()
 
@@ -32,6 +33,7 @@ class MainActivity : BaseActivity() {
 
         val adapter =
             MLDefinitionsAdapter(
+                this,
                 definitionList
             )
 
@@ -79,6 +81,17 @@ class MainActivity : BaseActivity() {
                 listingViewModel.fetchDataFromDatabase()
             }
         }
+    }
+
+    override fun onClickListener(position: Int) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        val prev = supportFragmentManager.findFragmentByTag("dialog")
+        if (prev != null) {
+            fragmentTransaction.remove(prev)
+        }
+        fragmentTransaction.addToBackStack(null)
+        val dialogFragment = DetailFragment.newInstance(definitionList[position])
+        dialogFragment.show(fragmentTransaction, "dialog")
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
