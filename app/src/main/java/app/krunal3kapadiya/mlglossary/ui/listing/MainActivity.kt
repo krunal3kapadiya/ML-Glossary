@@ -1,5 +1,6 @@
 package app.krunal3kapadiya.mlglossary.ui.listing
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,11 +9,14 @@ import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.krunal3kapadiya.mlglossary.BuildConfig
 import app.krunal3kapadiya.mlglossary.Injection
 import app.krunal3kapadiya.mlglossary.R
+import app.krunal3kapadiya.mlglossary.base.SharedPrefsProvider
+import app.krunal3kapadiya.mlglossary.base.SharedPrefsProvider.Companion.USER_PREF_FILE
 import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
 import app.krunal3kapadiya.mlglossary.ui.AboutActivity
-import app.krunal3kapadiya.mlglossary.ui.detail.DetailFragment
+import app.krunal3kapadiya.mlglossary.ui.detail.DetailDialogFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), OnClickListener {
@@ -29,6 +33,10 @@ class MainActivity : BaseActivity(), OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // show first time dialog
+        showInfoDialog()
+
         vf_main.displayedChild = 0
 
         val adapter =
@@ -83,6 +91,33 @@ class MainActivity : BaseActivity(), OnClickListener {
         }
     }
 
+    private fun showInfoDialog() {
+        val showDisplayDialog = SharedPrefsProvider(
+            applicationContext.getSharedPreferences(
+                USER_PREF_FILE,
+                Context.MODE_PRIVATE
+            )
+        ).getBoolFromPreferences(getString(R.string.pref_display_dialog), true)
+
+        if (showDisplayDialog) {
+            AlertDialog.Builder(this).apply {
+                setTitle(getString(R.string.app_name).plus(" " + BuildConfig.VERSION_NAME))
+                setMessage(getString(R.string.message_dialog))
+            }.setPositiveButton(getString(R.string.okay)) { dialog, _ ->
+                dialog.dismiss()
+            }.setNegativeButton(
+                getString(R.string.never_show)
+            ) { _, _ ->
+                SharedPrefsProvider(
+                    applicationContext.getSharedPreferences(
+                        USER_PREF_FILE,
+                        Context.MODE_PRIVATE
+                    )
+                ).savePreferences(getString(R.string.pref_display_dialog), false)
+            }.create().show()
+        }
+    }
+
     override fun onClickListener(position: Int) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         val prev = supportFragmentManager.findFragmentByTag("dialog")
@@ -90,7 +125,7 @@ class MainActivity : BaseActivity(), OnClickListener {
             fragmentTransaction.remove(prev)
         }
         fragmentTransaction.addToBackStack(null)
-        val dialogFragment = DetailFragment.newInstance(definitionList[position])
+        val dialogFragment = DetailDialogFragment.newInstance(definitionList[position])
         dialogFragment.show(fragmentTransaction, "dialog")
     }
 

@@ -9,7 +9,7 @@ import app.krunal3kapadiya.mlglossary.R
 import app.krunal3kapadiya.mlglossary.data.api.Mldefinitions
 import kotlinx.android.synthetic.main.fragment_detail.*
 
-class DetailFragment : DialogFragment() {
+class DetailDialogFragment : DialogFragment() {
     lateinit var mlDefinition: Mldefinitions
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +29,14 @@ class DetailFragment : DialogFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         dialog?.window?.attributes?.windowAnimations = R.style.FilterDialogAnimation
-        title.text = mlDefinition.name.toUpperCase()
+        text_title.text = mlDefinition.name
         detail.text = mlDefinition.definition
     }
 
     companion object {
         @JvmStatic
         fun newInstance(mlDefinition: Mldefinitions) =
-            DetailFragment().apply {
+            DetailDialogFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(ARG_DEFINITIONS, mlDefinition)
 

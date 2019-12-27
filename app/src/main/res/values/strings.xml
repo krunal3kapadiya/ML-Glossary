@@ -9,6 +9,11 @@
     <string name="love_text">Proudly made in Kotlin with ❤️ from 🇮🇳 </string>
     <string name="github_link"><![CDATA[Find application code on <a href="https://github.com/krunal3kapadiya/ML-Glossary">Github</a>]]></string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="okay">Okay</string>
+    <string name="never_show">Never show again</string>
+
+    <string name="message_dialog">This application you can search ML glossaries which can help you to read and understand ML concepts</string>
+
+    <string name="pref_display_dialog">ShowInfoDialog</string>
+    <string name="pref_screen_display_count">ScreenDisplayCount</string>
 </resources>
